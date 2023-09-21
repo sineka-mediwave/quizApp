@@ -20,16 +20,13 @@ h1 {
 button {
   margin: 0 auto;
   padding: 5px 10px;
+  font-size: 16px;
+  color: #fff;
   background-color: #867070;
   border: none;
   border-radius: 6px;
 }
 
-a {
-  font-size: 16px;
-  color: #fff;
-  text-decoration: none;
-}
 #myGroupSelectForm {
   padding: 20px;
   display:flex;
@@ -46,4 +43,43 @@ a {
   border: none;
   border-radius: 8px;
   outline: none;
+}
+
+/* Question HTML styling */
+fieldset {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  border-color: #F5EBEB;
+}
+
+legend {
+  padding: 0 10px;
+}
+
+input[type="radio"] {
+  margin: 0 10px;
+}
+
+.grid-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+@media (max-width: 991px) {
+  .grid-box{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-box{
+    grid-template-columns: 1fr;
+  }
+}
+
+.answerDiv{
+  padding: 10px;
+  text-align: right;
+  color: #867070;
 }
