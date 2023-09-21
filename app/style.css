@@ -7,7 +7,43 @@
   box-sizing: border-box;
 }
 
+body {
+  padding: 10px;
+  background-color: #F5EBEB;
+}
+
 h1 {
-    padding: 10px 0;
+    padding-bottom: 20px;
     text-align: center;
+}
+
+button {
+  margin: 0 auto;
+  padding: 5px 10px;
+  background-color: #867070;
+  border: none;
+  border-radius: 6px;
+}
+
+a {
+  font-size: 16px;
+  color: #fff;
+  text-decoration: none;
+}
+#myGroupSelectForm {
+  padding: 20px;
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  background-color:#E4D0D0;
+  border-radius: 10px;
+}
+
+#selectCategory {
+  margin: 10px auto;
+  padding: 5px 0;
+  background-color: #D5B4B4; 
+  border: none;
+  border-radius: 8px;
+  outline: none;
 }
