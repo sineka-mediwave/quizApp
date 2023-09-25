@@ -56,6 +56,12 @@ const questions = [
     category: 2,
   },
 ];
+setToLocalStorage();
+function setToLocalStorage() {
+  const str = JSON.stringify(questions);
+  localStorage.setItem("Quiz-Questions", str);
+}
+
 //appends an array of options to a given select element
 function appendOptions(selectElement, options) {
   for (let i = 0; i < options.length; i++) {
@@ -73,7 +79,6 @@ appendOptions(groupSelect, categories);
 // Get the selected value and move to the respected page when the button is clicked
 document.getElementById("proceed").addEventListener("click", function (e) {
   e.preventDefault();
-
   openQuestions();
 });
 
@@ -123,8 +128,8 @@ function gotoBegin() {
   questionBox.append(backBtn);
 }
 
-function findQuestion(questionId) {
-  const filterArrray = questions.filter((qn) => qn["category"] == questionId);
+function findQuestion(categoryId) {
+  const filterArrray = questions.filter((qn) => qn["category"] == categoryId);
   return filterArrray;
 }
 
@@ -136,7 +141,6 @@ function updateUi(qnArray) {
     const question = displayQuestionCard(qnArray[i]);
     form.append(question);
   }
-
   questionBox.append(form);
 }
 
@@ -168,6 +172,7 @@ function displayQuestionCard(qn) {
     if (op.isCorrect) {
       const ans = op.text;
       console.log(ans);
+
       const displayAnswer = document.createElement("div");
       displayAnswer.setAttribute("class", "answerDiv");
       displayAnswer.innerText = ans;
@@ -178,7 +183,6 @@ function displayQuestionCard(qn) {
       }
       fieldset.appendChild(displayAnswer);
     }
-    // console.log("is correct ", userAnswer == q["answer"])
   }
 
   fieldset.append(legend, optionGrid);
@@ -187,10 +191,9 @@ function displayQuestionCard(qn) {
 }
 
 function radioChecked(qnList) {
-  // const radioSelect = document.querySelector(
-  //   `input[name="${qnList.id}qn"]:cehcked`
-  // );
   console.log("check");
+  // console.log(`${qn.id}qn`);
+  // const value = `input[name="${qn.id}qn"]:checked`;
   displayAnswerBool = true;
   openQuestions();
 }
