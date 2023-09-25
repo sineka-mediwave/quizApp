@@ -3,119 +3,72 @@ const groupSelect = document.querySelector("#selectCategory");
 const quizCatBox = document.querySelector("#QuizCategory");
 const questionBox = document.querySelector("#Questions");
 
-// const state = {
-//   categories: [
-//     {
-//       id: 1,
-//       name: "Computer Science",
-//       value: "computer",
-//     },
-//     {
-//       id: 2,
-//       name: "Electronis",
-//       value: "electronics",
-//     },
-//     {
-//       id: 3,
-//       name: "Fundamental Physics",
-//       value: "physics",
-//     },
-//   ],
-//   questions: [
-//     {
-//       id: "cs1",
-//       question: "what is brain of computer?",
-//       options: [
-//         { id: "choice1", text: "CPU", isCorrect: true },
-//         { id: "choice2", text: "mouse", isCorrect: false },
-//         { id: "choice3", text: "monitor", isCorrect: false },
-//         { id: "choice4", text: "ALU", isCorrect: false },
-//       ],
-//       category: 1,
-//     },
-//     {
-//       id: "cs2",
-//       question: "The C programming language was developed by?",
-//       options: [
-//         { id: "choice1", text: "Dennis Ritchie", isCorrect: true },
-//         { id: "choice2", text: "Brendan Eich", isCorrect: false },
-//         { id: "choice3", text: "Guido van Rossum", isCorrect: false },
-//         { id: "choice4", text: "Elon Musk", isCorrect: false },
-//       ],
-//       category: 1,
-//     },
-//     {
-//       id: "ec1",
-//       question: "Which of the following is an application of Zener diode?",
-//       options: [
-//         { id: "choice1", text: "Rectifier", isCorrect: false },
-//         { id: "choice2", text: "Amplifier", isCorrect: false },
-//         { id: "choice3", text: "Voltage Regulator", isCorrect: true },
-//         { id: "choice4", text: "Oscillator", isCorrect: false },
-//       ],
-//       category: 2,
-//     },
-//   ],
-//   page: 0,
-// };
-const categories = [
-  {
-    id: 1,
-    name: "Computer Science",
-    value: "computer",
-  },
-  {
-    id: 2,
-    name: "Electronis",
-    value: "electronics",
-  },
-  {
-    id: 3,
-    name: "Fundamental Physics",
-    value: "physics",
-  },
-];
-
-const questions = [
-  {
-    id: "cs1",
-    question: "what is brain of computer?",
-    options: [
-      { id: "choice1", text: "CPU", isCorrect: true },
-      { id: "choice2", text: "mouse", isCorrect: false },
-      { id: "choice3", text: "monitor", isCorrect: false },
-      { id: "choice4", text: "ALU", isCorrect: false },
-    ],
-    category: 1,
-  },
-  {
-    id: "cs2",
-    question: "The C programming language was developed by?",
-    options: [
-      { id: "choice1", text: "Dennis Ritchie", isCorrect: true },
-      { id: "choice2", text: "Brendan Eich", isCorrect: false },
-      { id: "choice3", text: "Guido van Rossum", isCorrect: false },
-      { id: "choice4", text: "Elon Musk", isCorrect: false },
-    ],
-    category: 1,
-  },
-  {
-    id: "ec1",
-    question: "Which of the following is an application of Zener diode?",
-    options: [
-      { id: "choice1", text: "Rectifier", isCorrect: false },
-      { id: "choice2", text: "Amplifier", isCorrect: false },
-      { id: "choice3", text: "Voltage Regulator", isCorrect: true },
-      { id: "choice4", text: "Oscillator", isCorrect: false },
-    ],
-    category: 2,
-  },
-];
-// setToLocalStorage();
-// function setToLocalStorage() {
-//   const str = JSON.stringify(state);
-//   localStorage.setItem("Quiz-App", str);
-// }
+const state = {
+  categories: [
+    {
+      id: 1,
+      name: "Computer Science",
+      value: "computer",
+    },
+    {
+      id: 2,
+      name: "Electronis",
+      value: "electronics",
+    },
+    {
+      id: 3,
+      name: "Fundamental Physics",
+      value: "physics",
+    },
+  ],
+  questions: [
+    {
+      id: "cs1",
+      question: "what is brain of computer?",
+      options: [
+        { id: "choice1", text: "CPU", isCorrect: true },
+        { id: "choice2", text: "mouse", isCorrect: false },
+        { id: "choice3", text: "monitor", isCorrect: false },
+        { id: "choice4", text: "ALU", isCorrect: false },
+      ],
+      category: 1,
+    },
+    {
+      id: "cs2",
+      question: "The C programming language was developed by?",
+      options: [
+        { id: "choice1", text: "Dennis Ritchie", isCorrect: true },
+        { id: "choice2", text: "Brendan Eich", isCorrect: false },
+        { id: "choice3", text: "Guido van Rossum", isCorrect: false },
+        { id: "choice4", text: "Elon Musk", isCorrect: false },
+      ],
+      category: 1,
+    },
+    {
+      id: "ec1",
+      question: "Which of the following is an application of Zener diode?",
+      options: [
+        { id: "choice1", text: "Rectifier", isCorrect: false },
+        { id: "choice2", text: "Amplifier", isCorrect: false },
+        { id: "choice3", text: "Voltage Regulator", isCorrect: true },
+        { id: "choice4", text: "Oscillator", isCorrect: false },
+      ],
+      category: 2,
+    },
+    {
+      id: "py1",
+      question: "What is ohm's law?",
+      options: [
+        { id: "choice1", text: "V=I/R", isCorrect: false },
+        { id: "choice2", text: "V=IR", isCorrect: true },
+        { id: "choice3", text: "R=VI", isCorrect: false },
+        { id: "choice4", text: "none", isCorrect: false },
+      ],
+      category: 3,
+    },
+  ],
+  page: 0,
+};
 
 //appends an array of options to a given select element
 function appendOptions(selectElement, options) {
@@ -127,27 +80,44 @@ function appendOptions(selectElement, options) {
     selectElement.appendChild(optionElement);
   }
 }
-
 // append group options
-appendOptions(groupSelect, categories);
+appendOptions(groupSelect, state.categories);
 
-// Get the selected value and move to the respected page when the button is clicked
-document.getElementById("proceed").addEventListener("click", function (e) {
-  e.preventDefault();
-  openQuestions();
-});
+function setToLocalStorage(cat) {
+  const str = JSON.stringify(cat);
+  localStorage.setItem("category", str);
+}
+// Function to get data from localStorage
+function getFromLocalSorage() {
+  category = JSON.parse(localStorage.getItem("category")) || [];
+  return category;
+}
+proceedFn();
+function proceedFn() {
+  // Get the selected value and move to the respected page when the button is clicked
+  document.getElementById("proceed").addEventListener("click", function (e) {
+    e.preventDefault();
+    clearApp();
+    const selectedindex = state.categories.findIndex(
+      (cat) => cat.value == groupSelect.value
+    );
+    setToLocalStorage(selectedindex);
+    if (!getFromLocalSorage) {
+      openQuestions(selectedindex);
+    } else {
+      openQuestions(JSON.parse(localStorage.getItem("category")));
+    }
+  });
+}
 
 function clearApp() {
   questionBox.innerHTML = " ";
 }
-function openQuestions() {
-  clearApp();
-  const selectedCat = categories.findIndex(
-    (cat) => cat.value == groupSelect.value
-  );
+
+function openQuestions(selectedCat) {
   quizCatBox.style.display = "none";
   questionBox.style.visibility = "inherit";
-  const selectedcategory = categories[selectedCat];
+  let selectedcategory = state.categories[selectedCat];
   contentDiv();
   ButtonDiv();
   questionCategory(selectedcategory);
@@ -174,7 +144,6 @@ function questionCategory(cat) {
     const question = displayQuestionCard(qnArray[i]);
     app.append(question);
   }
-  // updateUi(qnList);
 }
 
 function ButtonDiv() {
@@ -186,16 +155,16 @@ function ButtonDiv() {
   const backBtn = document.createElement("button");
   backBtn.innerText = "Go Back";
   backBtn.addEventListener("click", function () {
-    // e.preventDefault();
     questionBox.style.visibility = "hidden";
     quizCatBox.style.display = "block";
-    displayAnswerBool = false;
   });
   buttonDiv.append(backBtn, submitBtn);
 }
 
 function findQuestion(categoryId) {
-  const filterArrray = questions.filter((qn) => qn["category"] == categoryId);
+  const filterArrray = state.questions.filter(
+    (qn) => qn["category"] == categoryId
+  );
   return filterArrray;
 }
 
@@ -226,9 +195,6 @@ function displayQuestionCard(qn) {
     label.innerText = op["text"];
     optionDiv.append(radioBtn, label);
     optionGrid.append(optionDiv);
-    // if (op.isCorrect) {
-    //   console.log(op.text);
-    // }
   }
 
   const resultdiv = document.createElement("div");
@@ -248,13 +214,12 @@ function displayQuestionCard(qn) {
         const op = option[i];
         if (op.isCorrect) {
           if (userAnswer === op.text) {
-            resultdiv.innerText = "correct: " + op.text;
+            resultdiv.innerText = "Answer: " + op.text;
             resultdiv.style.color = "green";
           } else {
-            resultdiv.innerText = "correct: " + op.text;
+            resultdiv.innerText = "Answer: " + op.text;
             resultdiv.style.color = "red";
           }
-          console.log("correct", userAnswer === op.text);
         }
       }
     } else {
