@@ -8,16 +8,20 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <h1>Quiz App</h1>
+    <main>
+      <section id="QuizCategory">
+        <h1>Quiz App</h1>
 
-    <form id="myGroupSelectForm">
-      <label for="selectCategory">Choose Your Category</label>
-      <select id="selectCategory"></select>
+        <form id="myGroupSelectForm">
+          <label for="selectCategory">Choose Your Category</label>
+          <select id="selectCategory">
+            <option selected disabled>Categories</option>
+          </select>
 
-      <button type="submit" id="proceed">
-        proceed
-        <!-- <a href="quiz.html">proceed</a> -->
-      </button>
-    </form>
+          <button type="submit" id="proceed">proceed</button>
+        </form>
+      </section>
+      <section id="Questions"></section>
+    </main>
   </body>
 </html>

@@ -28,7 +28,8 @@ button {
 }
 
 #myGroupSelectForm {
-  padding: 20px;
+  margin: 0 20%;
+  padding: 10px;
   display:flex;
   flex-direction: column;
   text-align: center;
@@ -82,4 +83,8 @@ input[type="radio"] {
   padding: 10px;
   text-align: right;
   color: #867070;
+}
+
+.submitBtn {
+  float: right;
 }
