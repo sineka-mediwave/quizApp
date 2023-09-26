@@ -120,14 +120,14 @@ document.getElementById("proceed").addEventListener("click", function (e) {
   e.preventDefault();
   const selectedValue = groupSelect.value;
   console.log(selectedValue);
-  if (selectedValue == "Categories") {
+  if (selectedValue == "Categories" || "") {
     alert("Select the category");
   } else if (selectedValue) {
     const selectedindex = state.categories.findIndex(
       (cat) => cat.value == selectedValue
     );
-    openQuestions(selectedindex);
     setToLocalStorage(selectedindex);
+    openQuestions(selectedindex);
   }
 });
 
@@ -140,13 +140,14 @@ function clearApp() {
   questionBox.innerHTML = " ";
 }
 
-function openQuestions(selectedCat) {
+function openQuestions(selectedindex) {
   clearApp();
   quizCatBox.style.display = "none";
   questionBox.style.visibility = "inherit";
-  let selectedcategory = state.categories[selectedCat];
   contentDiv();
   ButtonDiv();
+  let selectedcategory = state.categories[selectedindex];
+
   questionCategory(selectedcategory);
 }
 
