@@ -66,8 +66,29 @@ const state = {
       ],
       category: 3,
     },
+    {
+      id: "ec2",
+      question: "What is current?",
+      options: [
+        { id: "choice1", text: "Voltage", isCorrect: false },
+        { id: "choice2", text: "Electron", isCorrect: false },
+        { id: "choice3", text: "Flow of electrons", isCorrect: true },
+        { id: "choice4", text: "Power", isCorrect: false },
+      ],
+      category: 2,
+    },
+    {
+      id: "py2",
+      question: "What is Speed of Light?",
+      options: [
+        { id: "choice1", text: "3.9x10^9 m/sec", isCorrect: false },
+        { id: "choice2", text: "3x10^8 m/sec", isCorrect: true },
+        { id: "choice3", text: "9.8x10^8 m/sec", isCorrect: false },
+        { id: "choice4", text: "8x10^9 m/sec", isCorrect: false },
+      ],
+      category: 3,
+    },
   ],
-  page: 0,
 };
 
 //appends an array of options to a given select element
@@ -82,6 +103,7 @@ function appendOptions(selectElement, options) {
 }
 // append group options
 appendOptions(groupSelect, state.categories);
+// getCategoryIndex();
 
 function setToLocalStorage(cat) {
   const str = JSON.stringify(cat);
@@ -92,22 +114,26 @@ function getFromLocalSorage() {
   category = JSON.parse(localStorage.getItem("category")) || [];
   return category;
 }
-proceedFn();
-function proceedFn() {
-  // Get the selected value and move to the respected page when the button is clicked
-  document.getElementById("proceed").addEventListener("click", function (e) {
-    e.preventDefault();
-    clearApp();
+
+// Get the selected value and move to the respected page when the button is clicked
+document.getElementById("proceed").addEventListener("click", function (e) {
+  e.preventDefault();
+  const selectedValue = groupSelect.value;
+  console.log(selectedValue);
+  if (selectedValue == "Categories") {
+    alert("Select the category");
+  } else if (selectedValue) {
     const selectedindex = state.categories.findIndex(
-      (cat) => cat.value == groupSelect.value
+      (cat) => cat.value == selectedValue
     );
+    openQuestions(selectedindex);
     setToLocalStorage(selectedindex);
-    if (!getFromLocalSorage) {
-      openQuestions(selectedindex);
-    } else {
-      openQuestions(JSON.parse(localStorage.getItem("category")));
-    }
-  });
+  }
+});
+
+const storedCategory = getFromLocalSorage();
+if (storedCategory) {
+  openQuestions(storedCategory);
 }
 
 function clearApp() {
@@ -115,6 +141,7 @@ function clearApp() {
 }
 
 function openQuestions(selectedCat) {
+  clearApp();
   quizCatBox.style.display = "none";
   questionBox.style.visibility = "inherit";
   let selectedcategory = state.categories[selectedCat];
@@ -157,6 +184,7 @@ function ButtonDiv() {
   backBtn.addEventListener("click", function () {
     questionBox.style.visibility = "hidden";
     quizCatBox.style.display = "block";
+    setToLocalStorage("");
   });
   buttonDiv.append(backBtn, submitBtn);
 }
@@ -188,10 +216,10 @@ function displayQuestionCard(qn) {
     radioBtn.type = "radio";
     radioBtn.name = `${qn.id}qn`;
 
-    radioBtn.id = `${op.id}btn`;
-    radioBtn.value = op.text;
+    radioBtn.id = `${op.id}${qn.id}`;
+    radioBtn.value = op.id;
     const label = document.createElement("label");
-    label.htmlFor = op.id + "btn";
+    label.htmlFor = `${op.id}${qn.id}`;
     label.innerText = op["text"];
     optionDiv.append(radioBtn, label);
     optionGrid.append(optionDiv);
@@ -213,7 +241,7 @@ function displayQuestionCard(qn) {
       for (let i = 0; i < qn["options"].length; i++) {
         const op = option[i];
         if (op.isCorrect) {
-          if (userAnswer === op.text) {
+          if (userAnswer === op.id) {
             resultdiv.innerText = "Answer: " + op.text;
             resultdiv.style.color = "green";
           } else {
